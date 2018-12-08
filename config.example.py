@@ -15,15 +15,15 @@ HOST = "irc.chat.twitch.tv"
 PORT = 6667
 """ IRC "nickname". Must be lowercase. 
     Can be a bot account (i.e. MyBot) """
-NICK = "sonictt1"
+NICK = "<Twitch chat handle>"
 """ Twitch IRC Oauth """
 PASS = os.environ["TWITCH_OAUTH_TOKEN"]
 """ Twitch IRC Channel (#<username>) """
-CHAN = "#sonictt1"
+CHAN = "#<Twitch chat channel>"
 """ Max message rate (messages/time (s)) """
 RATE = (20/30)
 """ Username of streamer """
-USERNAME = "sonictt1"
+USERNAME = "<streamer username>"
 
 """
     Twitch API Configs
