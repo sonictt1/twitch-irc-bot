@@ -38,7 +38,10 @@ class ChatMessageLink(ChatResponsibilityLink):
         tags = tagsutil.get_tags_dict(message)
         badges = tagsutil.get_badges_from_tags(tags)
         user_message = tagsutil.get_message(message)
-        username = tags[tagsutil.DISPLAY_NAME_KEY]
+        if(tagsutil.DISPLAY_NAME_KEY in tags.keys()):
+            username = tags[tagsutil.DISPLAY_NAME_KEY]
+        else:
+            username = ""
         is_broadcaster = False
         is_mod = False
         print("Badges {}".format(badges.keys()))
