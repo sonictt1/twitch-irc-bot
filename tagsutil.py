@@ -44,11 +44,11 @@ def get_badges_from_tags(tags):
     badges_raw = tags[BADGES_KEY]
     badge_pairs = badges_raw.split(',')
     badge_dictionary = dict()
-    if(badges_raw == None)
+    if(badges_raw == None):
         return badge_dictionary
     for pair in badge_pairs:
         kvp = pair.split('/')
-        if(len(kvp) > 1)
+        if(len(kvp) > 1):
             badge_dictionary[kvp[0]] = kvp[1]
         else:
             badge_dictionary[kvp[0]] = "0"
