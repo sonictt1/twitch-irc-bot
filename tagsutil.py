@@ -2,7 +2,8 @@ import config
 
 SUB_PLAN_KEY = "msg-param-sub-plan-name"
 MSG_ID_KEY = "msg-id"
-SUB_MONTH_KEY = "msg-param-months"
+GIFT_SUB_MONTH_KEY = "msg-param-months"
+SUB_MONTH_KEY = "msg-param-cumulative-months"
 DISPLAY_NAME_KEY = "display-name"
 IS_MOD_KEY = "mod"
 BADGES_KEY = "badges"

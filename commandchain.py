@@ -49,9 +49,9 @@ class ChatMessageLink(ChatResponsibilityLink):
             print("Is broadcaster")
             print("Broadcaster value {}".format(badges[tagsutil.BADGE_BROADCASTER_KEY]))
             is_broadcaster = badges[tagsutil.BADGE_BROADCASTER_KEY] == "1"
-        is_mod = False
         if(tagsutil.IS_MOD_KEY in tags.keys()):
             is_mod = tags[tagsutil.IS_MOD_KEY] == "1"
+            print("{} value is {}".format(tagsutil.IS_MOD_KEY, tags[tagsutil.IS_MOD_KEY]))
         is_authed = is_broadcaster or is_mod
         print("Is authed {}".format(is_authed))
         print(username + ": " + user_message + "\n\n")
@@ -73,7 +73,9 @@ class UserEventLink(ChatResponsibilityLink):
         return USERSTATE_COMMAND in message
 
     def do_stuff(self, message, net_socket):
-        sub_link = usernoticecommandchain.SubOrResubCommandLink()
+        anon_gift_sub_link = usernoticecommandchain.AnonGiftSubCommandLink()
+        gift_sub_link = usernoticecommandchain.GiftSubCommandLink(successor=anon_gift_sub_link)
+        sub_link = usernoticecommandchain.SubOrResubCommandLink(successor=gift_sub_link)
         sub_link.handle(message, net_socket)
      
         

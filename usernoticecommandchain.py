@@ -35,3 +35,29 @@ class SubOrResubCommandLink(ChatMessageCommandChain):
         chat_obj = chat.Chat()
         chat_obj.add_decorator(chatdecorators.SubOrResubDecorator(username, tags[tagsutil.SUB_MONTH_KEY], tags[tagsutil.SUB_PLAN_KEY].replace("\s", " "), is_resub))
         chatcommands.chat(net_socket, chat_obj.get_chat_text())
+
+class GiftSubCommandLink(ChatMessageCommandChain):
+
+    def can_handle(self, message, tags):
+        if not tagsutil.MSG_ID_KEY in tags.keys():
+            return False
+        message_id = tags[tagsutil.MSG_ID_KEY]
+        return message_id == "subgift"
+
+    def do_stuff(self, username, message, net_socket, tags):
+        chat_obj = chat.Chat()
+        chat_obj.add_decorator(chatdecorators.GiftSubDecorator(username, tags[tagsutil.SUB_GIFT_RECIPIENT_KEY], tags[tagsutil.GIFT_SUB_MONTH_KEY], tags[tagsutil.SUB_PLAN_KEY].replace("\s", " ")))
+        chatcommands.chat(net_socket, chat_obj.get_chat_text())
+
+class AnonGiftSubCommandLink(ChatMessageCommandChain):
+
+    def can_handle(self, message, tags):
+        if not tagsutil.MSG_ID_KEY in tags.keys():
+            return False
+        message_id = tags[tagsutil.MSG_ID_KEY]
+        return message_id == "anonsubgift"
+
+    def do_stuff(self, username, message, net_socket, tags):
+        chat_obj = chat.Chat()
+        chat_obj.add_decorator(chatdecorators.AnonGiftSubDecorator(tags[tagsutil.SUB_GIFT_RECIPIENT_KEY], tags[tagsutil.GIFT_SUB_MONTH_KEY], tags[tagsutil.SUB_PLAN_KEY].replace("\s", " ")))
+        chatcommands.chat(net_socket, chat_obj.get_chat_text())

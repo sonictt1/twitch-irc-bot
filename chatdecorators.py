@@ -112,6 +112,25 @@ class DictDecorator(ChatDecorator):
 
     def decorate_chat(self, chat_text):
         return "{} {}".format(chat_text, self.new_text)
+
+class GiftSubDecorator(ChatDecorator):
+    def __init__(self, username, recipient_username, sub_months, sub_plan):
+        self.sub_months = sub_months
+        self.recipient_username = recipient_username
+        self.gifter_username = username
+        self.sub_plan = sub_plan
+
+    def decorate_chat(self, chat_text):
+        return "{} Thank you {} for gifting a {} subscription to {}! {} has been subbed for {} months!! sonictBang".format(chat_text, self.gifter_username, self.sub_plan, self.recipient_username, self.recipient_username)
+
+class AnonGiftSubDecorator(ChatDecorator):
+    def __init__(self, recipient_username, sub_months, sub_plan):
+        self.sub_months = sub_months
+        self.recipient_username = recipient_username
+        self.sub_plan = sub_plan
+
+    def decorate_chat(self, chat_text):
+        return "{} Somebody has given a sneaky secret {} sub to {}! They've been subbed for {} months! sonictBang".format(chat_text, self.sub_plan, self.recipient_username, self.sub_months)
         
 
 class ExceptionDecorator(ChatDecorator):
