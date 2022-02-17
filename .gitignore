@@ -104,3 +104,9 @@ venv.bak/
 .mypy_cache/
 
 config.py
+
+# Terraform
+*.tfvars
+.terraform/
+*.tfstate
+*.lock.hcl
